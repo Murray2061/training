@@ -1,8 +1,10 @@
 /*
- * t3.c
+ * t1.c
  *
- *  Created on: 2012/6/5
- *      Author: Murray
+ *		Demonstrate how to use fopen()/fread()/fwrite() functions.
+ *
+ *		This program reads in "fread.man" and shows it on display.
+ *
  */
 
 # include <stdio.h>
@@ -27,6 +29,7 @@ int main()
 		if (count < 80)	{
 			break;
 		}
+
 	}
 
 	return 0;
