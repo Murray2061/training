@@ -1,5 +1,11 @@
 # include <stdio.h>
 
+/*
+ *	It's an impressive work.
+ *	Anna shows she could utilize pointer to char in 2 days.
+ *							--Murray
+ */
+
 int main()
 {
     char s[80] = "123 456 789 0";
