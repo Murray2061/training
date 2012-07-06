@@ -17,7 +17,9 @@ int main()
 {
     struct timeval tv0, tv1;
 
+
 	signal(SIGINT, mysigint);
+	signal(SIGQUIT, mysigint);
 
 	while (1)	{
 	    time_t	ds;
