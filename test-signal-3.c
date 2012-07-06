@@ -1,4 +1,4 @@
-﻿# define _GNU_SOURCE
+# define _POSIX_SOURCE
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -21,7 +21,10 @@ int main()
 		sigaddset(&sigset, SIGINT);
 		sigaddset(&sigset, SIGQUIT);
 		
-		sigprocmask(SIG_BLOCK, sigset, NULL);
+		if (sigprocmask(SIG_BLOCK, &sigset, NULL) < 0)	{
+			perror("sigprocmask");
+			exit(1);
+		}
 
 		if ((pid = fork()) < 0)	{
 			perror("fork");
@@ -39,17 +42,16 @@ int main()
 
 			printf("\nPARENT: sending SIGQUIT\n\n");
 			kill(pid, SIGQUIT);
-			sleep(3);
 		} else	{		//	child
 			puts("I'm the new child!");
 			signal(SIGHUP, sighup); /* set function calls */
 			signal(SIGINT, sigint);
 			signal(SIGQUIT, sigquit);
-			sigprocmask(SIG_UNBLOCK, sigset, NULL);
+			sigprocmask(SIG_UNBLOCK, &sigset, NULL);
 
 			while (1)	{
-				sigsuspend(sigset);
 				puts("Child is awakened.");
+				pause();
 			}
 		}
 
@@ -63,7 +65,7 @@ void sighup(int unused) {
 
 
 void sigint(int unused) {
-    printf("CHILD: I have received a SIGINT\n");
+	printf("CHILD: I have received a SIGINT\n");
 }
 
 
