@@ -6,9 +6,7 @@
 # include <signal.h>
 
 
-void sighup(int);	/* routines child will call upon sigtrap */
-void sigint(int);
-void sigquit(int);
+void mysighand(int);	/* routines child will call upon sigtrap */
 
 
 int main()
@@ -44,9 +42,9 @@ int main()
 			kill(pid, SIGQUIT);
 		} else	{		//	child
 			puts("I'm the new child!");
-			signal(SIGHUP, sighup); /* set function calls */
-			signal(SIGINT, sigint);
-			signal(SIGQUIT, sigquit);
+			signal(SIGHUP, mysighand); /* set function calls */
+			signal(SIGINT, mysighand);
+			signal(SIGQUIT, mysighand);
 			sigprocmask(SIG_UNBLOCK, &sigset, NULL);
 
 			while (1)	{
@@ -59,17 +57,19 @@ int main()
 }
 
 
-void sighup(int unused) {
-	printf("CHILD: I have received a SIGHUP\n");
-}
+void mysighand(int sig)	{
+	switch (sig)	{
+	case SIGINT:
+		printf("CHILD: I have received a SIGINT\n");
+	break;
 
+	case SIGHUP:
+		printf("CHILD: I have received a SIGHUP\n");
+	break;
 
-void sigint(int unused) {
-	printf("CHILD: I have received a SIGINT\n");
-}
-
-
-void sigquit(int unused) {
-	printf("My DADDY has Killed me!!!\n");
-	exit(0);
+	case SIGQUIT:
+		printf("My DADDY has Killed me!!!\n");
+		exit(0);
+	break;
+	}
 }
