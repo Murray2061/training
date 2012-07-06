@@ -9,9 +9,19 @@ int main()
     char *p1, *p2, p3, *ind;
 
     infile = fopen ("./123" , "r");
+
+    /*
+     *
+     *	perror() itself merely prints the error message.
+     *	We have to call exit() explicitly whem something goes wrong.
+     *						--Murray
+     *
+     */
     if (infile == NULL) {
 	perror("Error");
+	exit(1);
     }
+
     while (fgets(s, 100, infile) != NULL) {
 	p1 = s, p2 = s;
 	while (*p1) {
