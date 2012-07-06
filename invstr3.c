@@ -1,6 +1,7 @@
 /* fgets example */
 #include <stdio.h>
 #include <ctype.h>
+# include <stdlib.h>
 
 int main()
 {
@@ -28,7 +29,7 @@ int main()
 	exit(1);
     }
 
-    while (fgets(s, 100, infile) != NULL) {
+    while (fgets(s, sizeof s, infile) != NULL) {
 	p1 = s, p2 = s;
 	while (*p1) {
 	    while(*p2 && !isspace(*p2)) {
