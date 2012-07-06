@@ -13,7 +13,7 @@ int main()
     /*
      *
      *	perror() itself merely prints the error message.
-     *	We have to call exit() explicitly whem something goes wrong.
+     *	We have to call exit() explicitly when something goes wrong.
      *						--Murray
      *
      */
