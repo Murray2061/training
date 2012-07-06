@@ -1,5 +1,6 @@
 /* fgets example */
 #include <stdio.h>
+#include <ctype.h>
 
 int main()
 {
@@ -13,23 +14,23 @@ int main()
     }
     while (fgets(s, 100, infile) != NULL) {
 	p1 = s, p2 = s;
-	while (*p1 != '\0') {
-	    while(*p2 != '\0' && *p2 != ' ') {
+	while (*p1) {
+	    while(*p2 && !isspace(*p2)) {
 		p2++;
 	    }
-	    ind = p2 + 1;
+	    if (*p2) {
+	    	ind = p2 + 1;
+	    }
 	    p2--;
-	    while (*p1 != ' ') {
-	    	if (p2 - p1 > 0) {
+	    while (p2 - p1 > 0) {
 		    p3 = *p2;
 		    *p2 = *p1;
 		    *p1 = p3;
-		}
-		p1++, p2--;
+  		    p1++, p2--;
 	    }
 	    p1 =ind, p2 =ind;
 	}
-	puts(s);
+	fprintf(stdout, "%s", s);
     }
     fclose (infile);
 
