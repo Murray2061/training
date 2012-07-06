@@ -8,7 +8,7 @@ int main()
     char s[100];
     char *p1, *p2, p3, *ind;
 
-    infile = fopen ("./123" , "r");
+    infile = fopen("./123" , "r");
 
     /*
      *
@@ -18,7 +18,13 @@ int main()
      *
      */
     if (infile == NULL) {
-	perror("Error");
+    /*
+     *	Put a meaningful message in perror().
+     *	Usually we'll insert the function name generating the error.
+     *						--Murray
+     *
+     */
+	perror("fopen");
 	exit(1);
     }
 
@@ -38,11 +44,11 @@ int main()
 		    *p1 = p3;
   		    p1++, p2--;
 	    }
-	    p1 =ind, p2 =ind;
+	    p1 = ind, p2 = ind;
 	}
 	fprintf(stdout, "%s", s);
     }
-    fclose (infile);
+    fclose(infile);
 
    return 0;
 }
