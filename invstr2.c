@@ -2,7 +2,7 @@
 
 int main()
 {
-    char s[80] = "123 456 789 0";
+    char s[80] = "123 456 789 012 345";
     char *p1, *p2, p3, *ind;
 
         printf("s = %s\n", s);
