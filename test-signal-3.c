@@ -28,6 +28,8 @@ int main()
 	}
 
 	if (pid)	{	//	parent
+		sigprocmask(SIG_UNBLOCK, &sigset, NULL);
+
 		printf("\nPARENT: sending SIGHUP\n\n");
 		kill(pid, SIGHUP);
 		sleep(3); /* pause for 3 secs */
