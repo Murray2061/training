@@ -19,12 +19,6 @@ int main()
      *
      */
     if (infile == NULL) {
-    /*
-     *	Put a meaningful message in perror().
-     *	Usually we'll insert the function name generating the error.
-     *						--Murray
-     *
-     */
 	perror("fopen");
 	exit(1);
     }
