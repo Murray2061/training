@@ -16,7 +16,12 @@ int main()
 	FILE	*infile;
 	int		count;
 	char	s[80];
+	struct stat	fs;
 
+	if (stat('fread.man', &fs) < 0)	{
+		system("man fread > fread.man");
+	}
+	
 	infile = fopen("fread.man", "r");
 	if (infile == NULL)	{
 		perror("fopen");
