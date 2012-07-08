@@ -9,6 +9,9 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <unistd.h>
 
 
 int main()
@@ -18,7 +21,7 @@ int main()
 	char	s[80];
 	struct stat	fs;
 
-	if (stat('fread.man', &fs) < 0)	{
+	if (stat("fread.man", &fs) < 0)	{
 		system("man fread > fread.man");
 	}
 	
