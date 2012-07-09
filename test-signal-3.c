@@ -27,6 +27,8 @@ int main()
 		exit(1);
 	}
 
+	printf("DEBUG! pid = %d\n", pid);
+	
 	if (pid)	{	//	parent
 		sigprocmask(SIG_UNBLOCK, &sigset, NULL);
 
