@@ -19,16 +19,15 @@ int main()
         printf("Read file could not be opened");
         exit(1);
 
-    }else {
-        while ((bn = read(fd, str, sizeof (str))) > 0) {
-            for (i = 0; i < bn; i++) {
-                if (str[i] >= 'a' && str[i] <= 'z') {
-                    str[i] = str[i] - 32;
-                }
-            }
-            write(fd2, str, bn);
-        }
+    }
 
+    while ((bn = read(fd, str, sizeof (str))) > 0) {
+        for (i = 0; i < bn; i++) {
+            if (str[i] >= 'a' && str[i] <= 'z') {
+                str[i] = str[i] - 32;
+            }
+        }
+        write(fd2, str, bn);
     }
 
     close(fd);
