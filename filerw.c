@@ -14,7 +14,6 @@ int main()
 
 	while (!feof(rptr)) {
            bn = fread(str, 1, sizeof (str), rptr);
-//		   printf("bn = %d\n", bn);
            fwrite(str, 1, bn, stdout);
 	}
 
