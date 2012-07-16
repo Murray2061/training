@@ -1,7 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 int main()
 {
-    char	str[80];
+    char str[80];
+
     int		bn, i;
     FILE	*rptr;
 
@@ -17,8 +20,12 @@ int main()
             }
             fwrite(str, 1, bn, stdout);
         }
+
     }
+
     fclose(rptr);
+
+    return 0;
 }
 
 
