@@ -2,18 +2,20 @@
 int main()
 {
     char	str[80];
-    int	bn;
+    int		bn, i;
     FILE	*rptr;
 
-//FILE *wptr;
-//wptr=fopen("phil2.txt","w");
     if ((rptr = fopen("fread.man", "r")) == NULL) {
         printf("File could not be opened");
     }else {
         while (!feof(rptr)) {
-            bn = fread(str, sizeof (str), 1, rptr);
-            fwrite(str, bn, 1, stdout);
-//fwrite(str,sizeof(str),1,wptr);
+            bn = fread(str, 1, sizeof (str), rptr);
+            for (i = 0; i < bn; i++) {
+                if (str[i] >= 'a' && str[i] <= 'z') {
+                    str[i] = str[i] - 32;
+                }
+            }
+            fwrite(str, 1, bn, stdout);
         }
     }
     fclose(rptr);
